@@ -5,17 +5,17 @@
 
 using namespace filesystems;
 
+#define ENDIAN std::cout << *(int*)"\0\0\0f" << std::endl;
+
 int main()
 {
-	try
-	{
-		throw CException("Ohh..");
-	}
-	catch(std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-
+	//std::cout << (void*)((char*)&1)  << std::endl;
+	int a = 6;
+	int b = *(char*)&a;
+	
+	ENDIAN
+	
+	std::cout << b;
 	return 0;
 	
 }

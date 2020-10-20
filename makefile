@@ -7,9 +7,15 @@ SRCS=$(wildcard $(SRC_DIR)/*.cpp)
 OBJS=$(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 
 CPP=g++
-FLAGS=-ansi -pedantic-errors -Wall -Wextra -g -std=c++11
+FLAGS=-ansi -pedantic-errors -Wall -Wextra -g -std=c++11 -Wno-missing-field-initializers
 FLAGS+=-I$(INC_DIR)
 DEPS=$(patsubst $(SRC_DIR)/%.cpp, $(DEP_DIR)/%.d, $(SRCS))
+
+fs.out:  $(OBJS) $(OBJ_DIR)/fs.o
+	$(CPP) $(FLAGS) -o $@ $^
+
+$(OBJ_DIR)/fs.o: file-systems.cpp
+	$(CPP) $(FLAGS) -c -o $@ $<
 
 .PHONY: test
 test: test.out
@@ -18,11 +24,15 @@ test.out: test.cpp $(OBJS)
 	$(CPP) $(FLAGS) $^ -o $@
 
 -include $(DEPS)
+-include $(DEP_DIR)/fs.d
 	
 # create dependecies files
 $(DEP_DIR)/%.d: $(SRC_DIR)/*.cpp
 	$(CPP) $(FLAGS) -MM -MT $(patsubst $(DEP_DIR)/%.d, $(OBJ_DIR)/%.o, $@) $< > $@ 
 	
+$(DEP_DIR)/fs.d: file-systems.cpp
+	$(CPP) $(FLAGS) -MM -MT $(OBJ_DIR)/fs.o $< > $@
+
 # compilation
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CPP) $(FLAGS) -c -o $@ $<
@@ -39,9 +49,6 @@ $(DEP_DIR):
 	mkdir $(DEP_DIR)
 
 
-fs.out: file-systems.cpp
-	echo $(CFLAGS)
-	#$(CPP) $(FLAGS) $^ -I$(INCLUDE) -o $@
 
 
 .PHONY: clean
