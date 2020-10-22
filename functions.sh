@@ -16,7 +16,7 @@ function create_class() {
 	src_path=../src
 	include_path=../include
 	
-	cd ~/playground/file-systems/templates
+	cd ./templates
 	
 	if [ -f $src_path/$cppname ]; then
 		read -p "${cppname} already exists, override? Y/N" answer

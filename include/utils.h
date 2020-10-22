@@ -2,6 +2,7 @@
 #ifndef __UTILS_H__
 #define __UTILS_H__
 
+#include <iostream> // std::cout
 #include "exception.h"
 
 namespace filesystems 

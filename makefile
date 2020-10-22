@@ -11,10 +11,13 @@ FLAGS=-ansi -pedantic-errors -Wall -Wextra -g -std=c++11 -Wno-missing-field-init
 FLAGS+=-I$(INC_DIR)
 DEPS=$(patsubst $(SRC_DIR)/%.cpp, $(DEP_DIR)/%.d, $(SRCS))
 
-fs.out:  $(OBJS) $(OBJ_DIR)/fs.o
+.PHONY: srcs
+srcs: $(OBJS)
+
+ext2.out:  $(OBJS) $(OBJ_DIR)/main.o
 	$(CPP) $(FLAGS) -o $@ $^
 
-$(OBJ_DIR)/fs.o: file-systems.cpp
+$(OBJ_DIR)/main.o: main.cpp
 	$(CPP) $(FLAGS) -c -o $@ $<
 
 .PHONY: test

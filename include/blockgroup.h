@@ -5,7 +5,7 @@
 namespace filesystems
 {
 
-class Blockgroup
+class BlockGroup
 {
 	
 };

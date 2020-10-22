@@ -21,6 +21,4 @@ void read_all(int fd, char* buffer, std::size_t len)
 	}
 }
 	
-}
-
 } // filesystems
