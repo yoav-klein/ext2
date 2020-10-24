@@ -10,6 +10,12 @@
 namespace filesystems
 {
 
+void Device::setup_device(std::string device_path)
+{
+	m_device_path = device_path;
+	open_device();
+}
+
 void Device::open_device()
 {
 	int fd = open(m_device_path.c_str(), O_RDONLY);

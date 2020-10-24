@@ -19,7 +19,7 @@ public:
 	Device& operator=(const Device&) = delete;
 	Device& operator=(Device&&) = delete;
 	
-	void set_device(const std::string device_name);
+	void setup_device(const std::string device_name);
 	void read(std::size_t from, std::size_t length, char* buffer); 
 
 private:

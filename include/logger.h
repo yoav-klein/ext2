@@ -2,7 +2,7 @@
 #include <mutex> // std::mutex
 #include <vector> // std::vector
 
-#include "singleton.h" // Singleton<Logger>
+#include "singleton.h" // Handleton<Logger>
 
 #ifndef __LOGGER_H__
 #define __LOGGER_H__
@@ -40,6 +40,8 @@ public:
 	void add_output(std::ostream& output);
 
 private:
+	std::string get_severity_string(Severity sever);	
+	
 	explicit Logger(Severity initial_severity = WARNING, 
 					std::ostream& initial_stream = std::cerr);
 	friend class Singleton<Logger>;
@@ -50,5 +52,5 @@ private:
 
 Logger* get_logger(); // in globals.so
 
-} //  ilrd
+} //  filesystems
 #endif //__LOGGER_H__

@@ -14,11 +14,11 @@ DEPS=$(patsubst $(SRC_DIR)/%.cpp, $(DEP_DIR)/%.d, $(SRCS))
 MAIN=main
 EXE=ext2.out
 
-.PHONY: srcs
-srcs: $(OBJS)
 
 $(EXE):  $(OBJS) $(OBJ_DIR)/$(MAIN).o
 	$(CPP) $(FLAGS) -o $@ $^
+
+
 
 $(OBJ_DIR)/main.o: $(MAIN).cpp
 	$(CPP) $(FLAGS) -c -o $@ $<
@@ -33,7 +33,7 @@ test.out: test.cpp $(OBJS)
 -include $(DEP_DIR)/fs.d
 	
 # create dependecies files
-$(DEP_DIR)/%.d: $(SRC_DIR)/*.cpp
+$(DEP_DIR)/%.d: $(SRC_DIR)/%.cpp
 	$(CPP) $(FLAGS) -MM -MT $(patsubst $(DEP_DIR)/%.d, $(OBJ_DIR)/%.o, $@) $< > $@ 
 	
 $(DEP_DIR)/$(MAIN).d: $(MAIN).cpp

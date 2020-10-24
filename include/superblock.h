@@ -13,7 +13,8 @@ class SuperBlock
 {
 public:
 	SuperBlock();
-	~SuperBlock();
+	~SuperBlock() = default;
+	
 	
 	void print();
 	

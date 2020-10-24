@@ -16,7 +16,9 @@ class Ext2
 {
 public:
 	Ext2(std::string device_path);
-	~Ext2();
+	~Ext2() = default;
+	Ext2(const Ext2&) = delete;
+	Ext2& operator=(const Ext2&) = delete;
 	
 private:
 	std::string m_device_path;
