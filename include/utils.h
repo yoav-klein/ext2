@@ -7,9 +7,6 @@
 
 namespace filesystems 
 {
-
-void read_all(int fd, char* buffer, std::size_t len);
-//void write_all(int fd, char* buffer, std::size_t len);
 	
 
 template<typename T>

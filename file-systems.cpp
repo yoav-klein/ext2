@@ -19,6 +19,12 @@ namespace filesystems
 {
 
 
+template<typename T>
+void print_line(std::string field, T value)
+{
+	std::cout.width(20); std::cout << std::left << field;
+	std::cout.width(20); std::cout << std::left << value << std::endl;
+}
 
 int open_device(std::string device)
 {

@@ -15,12 +15,13 @@ public:
 	SuperBlock();
 	~SuperBlock();
 	
-		
+	void print();
+	
 private:
-	void read_super_block();
+	void read_superblock();
 	
 	int m_fd;
-	struct ext2_super_block m_super_block;
+	struct ext2_super_block m_superblock;
 };
 
 } // filesystems
