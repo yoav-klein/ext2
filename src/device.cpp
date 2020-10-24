@@ -5,10 +5,18 @@
 #include <unistd.h> // lseek
 #include <string.h> // strerror
 
+#include "singleton.h" // Singleton<Logger>
+#include "logger.h" // Logger
 #include "device.h"
 
 namespace filesystems
 {
+
+Device::Device()
+	: m_logger(Singleton<Logger>::get_instance())
+{
+	LOG(Logger::DEBUG, "Ctor", __LINE__); 
+}
 
 void Device::setup_device(std::string device_path)
 {
@@ -44,6 +52,11 @@ void Device::read(std::size_t from, std::size_t length, char* buffer)
 		length -= read_bytes;
 		buffer += read_bytes;
 	}
+}
+
+void Device::LOG(Logger::Severity sever, std::string msg, int line)
+{
+	m_logger->write(sever, "Device", msg, line);
 }
 
 

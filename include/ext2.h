@@ -8,6 +8,7 @@
 #include "superblock.h" // SuperBlock
 #include "blockgroup.h" // BlockGroup
 #include "file_raii.h" // FileDescriptor
+#include "device.h" // Device
 
 namespace filesystems
 {
@@ -24,7 +25,7 @@ private:
 	std::string m_device_path;
 	SuperBlock m_superblock;
 	std::vector<BlockGroup> m_blockgroups;
-	
+	Device* m_device;
 };
 
 } // filesystems
