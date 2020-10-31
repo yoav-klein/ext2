@@ -1,8 +1,16 @@
 
 function create_fs() {
-	sudo modprobe brd
-	sudo mkfs.ext2 /dev/ram0
+	if [ ! -d mnt ]; then
+		mkdir mnt
+		chown $USER mnt
+	fi
+	if [ ! -b /dev/ram0 ]; then	
+		sudo modprobe brd
+		sudo mkfs.ext2 /dev/ram0
+		sudo chown yoav mnt
+	fi
 	sudo mount /dev/ram0 mnt
+	
 	cd mnt
 	git clone https://github.com/yoav-klein/repo.git
 }

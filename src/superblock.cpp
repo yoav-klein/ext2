@@ -1,21 +1,32 @@
 
 #include "superblock.h" // Superblock
-#include "device.h" // Device
 #include "singleton.h" // Singleton
 #include "utils.h" // print_line
 
 namespace filesystems
 {
 
-SuperBlock::SuperBlock()
+SuperBlock::SuperBlock(std::shared_ptr<Info> info)
+	: m_info(info), m_device(Singleton<Device>::get_instance())
 {
-
+	LOG(Logger::DEBUG, "Ctor", __LINE__);
 }
+
+SuperBlock::~SuperBlock()
+{
+	LOG(Logger::DEBUG, "Dtor", __LINE__);
+}
+
 void SuperBlock::read_superblock()
-{
-	Device* device = Singleton<Device>::get_instance();
+{	
+	m_device->read(m_info->BASE_OFFSET, SUPERBLOCK_SIZE, &m_superblock);
 }
 
+
+void SuperBlock::LOG(Logger::Severity sever, std::string msg, int line)
+{
+	m_logger->write(sever, "SuperBlock", msg, line);
+}
 
 void SuperBlock::print()
 {

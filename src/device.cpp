@@ -35,8 +35,9 @@ void Device::open_device()
 	m_device_fd = fd;	
 }
 
-void Device::read(std::size_t from, std::size_t length, char* buffer)
+void Device::read(std::size_t from, std::size_t length, void* buffera)
 {
+	char* buffer = static_cast<char*>(buffera);
 	if(-1 == lseek(m_device_fd, from, SEEK_SET))
 	{
 		throw CException(strerror(errno));

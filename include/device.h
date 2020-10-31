@@ -15,7 +15,6 @@ namespace filesystems
 class Device
 {
 public:
-	Device();
 	~Device() = default;
 	Device(const Device&) = delete;
 	Device& operator=(const Device&) = delete;
@@ -23,9 +22,10 @@ public:
 	Device(Device&&) = delete;
 	
 	void setup_device(const std::string device_name);
-	void read(std::size_t from, std::size_t length, char* buffer); 
+	void read(std::size_t from, std::size_t length, void* buffer); 
 
 private:
+	Device();
 	friend class Singleton<Device>;
 		
 	void open_device();
