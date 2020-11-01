@@ -7,7 +7,7 @@ function create_fs() {
 	if [ ! -b /dev/ram0 ]; then	
 		sudo modprobe brd
 		sudo mkfs.ext2 /dev/ram0
-		sudo chown yoav mnt
+		sudo chown $USER mnt
 	fi
 	sudo mount /dev/ram0 mnt
 	
