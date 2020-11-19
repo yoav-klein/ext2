@@ -7,9 +7,12 @@ namespace filesystems
 {
 
 SuperBlock::SuperBlock(std::shared_ptr<Info> info)
-	: m_info(info), m_device(Singleton<Device>::get_instance())
+	: m_info(info),  m_logger(Singleton<Logger>::get_instance()), 
+	  m_superblock { 0 }
 {
 	LOG(Logger::DEBUG, "Ctor", __LINE__);
+	m_device = Singleton<Device>::get_instance();
+	read_superblock();
 }
 
 SuperBlock::~SuperBlock()

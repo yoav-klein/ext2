@@ -15,7 +15,7 @@ namespace filesystems
 class Device
 {
 public:
-	~Device() = default;
+	~Device();
 	Device(const Device&) = delete;
 	Device& operator=(const Device&) = delete;
 	Device& operator=(Device&&) = delete;

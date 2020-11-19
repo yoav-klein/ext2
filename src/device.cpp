@@ -18,8 +18,14 @@ Device::Device()
 	LOG(Logger::DEBUG, "Ctor", __LINE__); 
 }
 
+Device::~Device()
+{
+	LOG(Logger::DEBUG, "Dtor", __LINE__);
+}
+
 void Device::setup_device(std::string device_path)
 {
+	LOG(Logger::DEBUG, "Setup device", __LINE__);
 	m_device_path = device_path;
 	open_device();
 }

@@ -2,7 +2,9 @@
 #include <iostream> // std::cout
 #include <exception> // Exception
 #include <cstring> // strcmp
+#include <memory> // std::shared_ptr
 
+#include "device.h" // Device
 #include "singleton.h" // Singleton
 #include "logger.h" // Logger
 #include "ext2.h" //Ext2
@@ -25,7 +27,10 @@ int main(int argc, char** argv)
 	
 	try
 	{
-		Ext2 ext2("/dev/ram0");
+		Device* device = Singleton<Device>::get_instance();
+		device->setup_device("/dev/ram0");
+		Ext2 ext2;
+		ext2.print_superblock();
 	}
 	catch(std::exception& e)
 	{

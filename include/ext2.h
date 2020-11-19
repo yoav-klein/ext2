@@ -18,15 +18,17 @@ namespace filesystems
 class Ext2
 {
 public:
-	Ext2(std::string device_path);
+	Ext2();
 	~Ext2();
 	Ext2(const Ext2&) = delete;
 	Ext2& operator=(const Ext2&) = delete;
 	
+	void print_superblock();
+	
 private:
 	void LOG(Logger::Severity sever, std::string msg, int line);
+	
 	Logger* m_logger;
-	std::string m_device_path;
 	std::shared_ptr<Info> m_info;
 	SuperBlock m_superblock;
 	std::vector<BlockGroup> m_blockgroups;

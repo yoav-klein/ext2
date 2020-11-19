@@ -5,17 +5,20 @@
 namespace filesystems
 {
 
-Ext2::Ext2(std::string device_path)
-	: m_device_path(device_path), m_info(new Info()), m_superblock(m_info)
+Ext2::Ext2()
+	: m_logger(Singleton<Logger>::get_instance()), m_info(new Info()), m_superblock(m_info), m_device(Singleton<Device>::get_instance())
 {
 	LOG(Logger::DEBUG, "Ctor", __LINE__);
-	m_device = Singleton<Device>::get_instance();
-	m_device->setup_device(device_path);
 }
 
 Ext2::~Ext2()
 {
 	LOG(Logger::DEBUG, "Dtor", __LINE__);
+}
+
+void Ext2::print_superblock()
+{
+	m_superblock.print();
 }
 
 void Ext2::LOG(Logger::Severity sever, std::string msg, int line)
