@@ -14,9 +14,15 @@ using namespace filesystems;
 int main(int argc, char** argv)
 {
 	Logger* logger = Singleton<Logger>::get_instance();
-	 
-	if((2 == argc) && !strcmp(argv[1], "DEBUG"))
+	bool is_debug;
+	if(argc < 2)
 	{
+		std::cout << "Usage: ext2.out <device_name> [DEBUG]" << std::endl;
+		return 1;
+	}
+	if((2 < argc) && !strcmp(argv[2], "DEBUG"))
+	{
+		is_debug = true;
 		std::cout << "DEBUG MODE" << std::endl;
 		logger->set_output_severity(Logger::DEBUG);
 	}
@@ -28,7 +34,7 @@ int main(int argc, char** argv)
 	try
 	{
 		Device* device = Singleton<Device>::get_instance();
-		device->setup_device("/dev/ram0");
+		device->setup_device(argv[1]);
 		Ext2 ext2;
 		ext2.print_superblock();
 	}

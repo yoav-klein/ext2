@@ -5,9 +5,12 @@
 #include <iostream> // std::cout
 #include "exception.h"
 
+#define BLOCK_OFFSET(x) ()
+
 namespace filesystems 
 {
-	
+
+
 
 template<typename T>
 void print_line(std::string field, T value)

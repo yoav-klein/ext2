@@ -27,9 +27,10 @@ public:
 	
 private:
 	void LOG(Logger::Severity sever, std::string msg, int line);
+	void init_blockgroups();
 	
 	Logger* m_logger;
-	std::shared_ptr<Info> m_info;
+	Info* m_info;
 	SuperBlock m_superblock;
 	std::vector<BlockGroup> m_blockgroups;
 	Device* m_device;

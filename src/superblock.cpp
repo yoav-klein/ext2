@@ -6,13 +6,15 @@
 namespace filesystems
 {
 
-SuperBlock::SuperBlock(std::shared_ptr<Info> info)
-	: m_info(info),  m_logger(Singleton<Logger>::get_instance()), 
-	  m_superblock { 0 }
+SuperBlock::SuperBlock()
+	: m_info(Singleton<Info>::get_instance()), 
+		m_logger(Singleton<Logger>::get_instance()), 
+	  	m_superblock { 0 }
 {
 	LOG(Logger::DEBUG, "Ctor", __LINE__);
 	m_device = Singleton<Device>::get_instance();
 	read_superblock();
+	init_info();
 }
 
 SuperBlock::~SuperBlock()
@@ -25,6 +27,15 @@ void SuperBlock::read_superblock()
 	m_device->read(m_info->BASE_OFFSET, SUPERBLOCK_SIZE, &m_superblock);
 }
 
+void SuperBlock::init_info()
+{
+	unsigned int blocks_count = m_superblock.s_blocks_count;
+	unsigned int blocks_per_group = m_superblock.s_blocks_per_group;
+	 
+	m_info->num_groups = blocks_count / blocks_per_group + ((blocks_count % blocks_per_group) > 0);
+	m_info->block_size = (unsigned int)1024 << m_superblock.s_log_block_size;
+	m_info->first_data_block = m_superblock.s_first_data_block; 
+}
 
 void SuperBlock::LOG(Logger::Severity sever, std::string msg, int line)
 {

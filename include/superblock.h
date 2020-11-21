@@ -18,17 +18,18 @@ namespace filesystems
 class SuperBlock
 {
 public:
-	SuperBlock(std::shared_ptr<Info> info);
+	SuperBlock();
 	~SuperBlock();
 	
 	void print();
 	
 private:
-	std::shared_ptr<Info> m_info;
+	Info* m_info;
 	Device* m_device;
 	void LOG(Logger::Severity sever, std::string msg, int line);
 	Logger* m_logger;
 	void read_superblock();
+	void init_info();
 	
 	int m_fd;
 	struct ext2_super_block m_superblock;
