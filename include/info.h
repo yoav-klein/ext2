@@ -20,7 +20,7 @@ struct Info
 	
 	inline unsigned int block_offset(unsigned int block_num)
 	{
-		return BASE_OFFSET + (block_size * block_num);
+		return (block_size * block_num);
 	}
 };
 
