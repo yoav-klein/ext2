@@ -13,6 +13,7 @@ function create_fs() {
 	sudo chown $USER mnt
 	cd mnt
 	git clone https://github.com/yoav-klein/repo.git
+	cd ..
 }
 
 function create_class() {
