@@ -1,6 +1,8 @@
 
+#include "singleton.h" // Singleton<Logger>
+#include "utils.h" // print_line
+
 #include "ext2.h"
-#include "singleton.h"
 
 namespace filesystems
 {
@@ -33,8 +35,11 @@ void Ext2::print_superblock()
 	m_superblock.print();
 	std::cout << "---------------" << std::endl;
 	std::cout << "stats:" << std::endl;
-	std::cout << "num groups: " << m_info->num_groups << std::endl;
-	std::cout << "Block size: " << m_info->block_size << std::endl;
+	
+	print_line("num groups", m_info->num_groups);
+	print_line("Block size", m_info->block_size);
+	print_line("First block", m_info->first_data_block);
+
 }
 
 void Ext2::LOG(Logger::Severity sever, std::string msg, int line)

@@ -1,12 +1,20 @@
 
 function create_fs() {
+	while [ -n "$1" ]; do
+		case $1 in
+			
+
+		esac	
+		
+	done
+
 	if [ ! -d mnt ]; then
 		mkdir mnt
 		chown $USER mnt
 	fi
 	if [ ! -b /dev/ram0 ]; then	
 		sudo modprobe brd
-		sudo mkfs.ext2 /dev/ram0
+		sudo mkfs.ext2 /dev/ram0 -d
 		
 	fi
 	sudo mount /dev/ram0 mnt
