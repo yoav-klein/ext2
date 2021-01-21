@@ -14,6 +14,7 @@ using namespace filesystems;
 int main(int argc, char** argv)
 {
 	Logger* logger = Singleton<Logger>::get_instance();
+	
 	bool is_debug;
 	if(argc < 2)
 	{
