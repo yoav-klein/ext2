@@ -24,6 +24,7 @@ public:
 	Ext2& operator=(const Ext2&) = delete;
 	
 	void print_superblock();
+	void print_root();
 	
 private:
 	void LOG(Logger::Severity sever, std::string msg, int line);

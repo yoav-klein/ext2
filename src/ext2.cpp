@@ -1,6 +1,7 @@
 
+#include "ext2_fs.h" // struct ext2_group_desc
 #include "ext2.h"
-#include "singleton.h"
+#include "singleton.h" // Singleton<Device>
 
 namespace filesystems
 {
@@ -35,6 +36,12 @@ void Ext2::print_superblock()
 	std::cout << "stats:" << std::endl;
 	std::cout << "num groups: " << m_info->num_groups << std::endl;
 	std::cout << "Block size: " << m_info->block_size << std::endl;
+}
+
+void Ext2::print_root()
+{
+	struct ext2_group_desc first_group_desc;
+	m_blockgroups[0].
 }
 
 void Ext2::LOG(Logger::Severity sever, std::string msg, int line)
