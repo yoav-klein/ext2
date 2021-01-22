@@ -1,6 +1,6 @@
 
 #include <iostream>
-
+#include "ext2_fs.h"
 /*
 #include "tools.h"
 #include "exception.h"
@@ -16,6 +16,7 @@ int main(int argc, char** argv)
 	#ifdef DEBUG
 	std::cout << "DEBUG" << std::endl;
 	#endif	
+	std::cout << sizeof(struct ext2_inode) << std::endl;
 	
 	/*Logger* logger = Singleton<Logger>::get_instance();
 	logger->set_output_severity(Logger::Severity::DEBUG);

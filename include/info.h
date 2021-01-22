@@ -10,13 +10,15 @@ namespace filesystems
 struct Info
 {
 	Info()
-		: num_groups(0), block_size(0), first_data_block(0) 
+		: num_groups(0), block_size(0), first_data_block(0), blocks_per_group(0), inodes_per_group(0)
 	{}
 
 	const std::size_t BASE_OFFSET = 1024;
 	unsigned int num_groups;
 	unsigned int block_size;
 	unsigned int first_data_block;
+	unsigned int blocks_per_group;
+	unsigned int inodes_per_group;
 	
 	inline unsigned int block_offset(unsigned int block_num)
 	{

@@ -1,11 +1,20 @@
 
+
+
 function create_fs() {
 	while [ -n "$1" ]; do
 		case $1 in
-			
-
-		esac	
 		
+		-b|--block-size)
+		block_size=$2
+		shift
+		shift
+		;;
+		
+		*)
+		shift
+		;;
+		esac	
 	done
 
 	if [ ! -d mnt ]; then
@@ -14,9 +23,8 @@ function create_fs() {
 	fi
 	if [ ! -b /dev/ram0 ]; then	
 		sudo modprobe brd
-		sudo mkfs.ext2 /dev/ram0 -d
-		
 	fi
+	sudo mkfs.ext2 /dev/ram0 -b $block_size	
 	sudo mount /dev/ram0 mnt
 	sudo chown $USER mnt
 	cd mnt

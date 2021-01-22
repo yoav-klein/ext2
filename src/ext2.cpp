@@ -1,5 +1,4 @@
 
-#include "ext2_fs.h" // struct ext2_group_desc
 #include "singleton.h" // Singleton<Logger>
 #include "utils.h" // print_line
 
@@ -41,12 +40,13 @@ void Ext2::print_superblock()
 	print_line("Block size", m_info->block_size);
 	print_line("First block", m_info->first_data_block);
 
+	
 }
 
 void Ext2::print_root()
 {
 	struct ext2_group_desc first_group_desc;
-	m_blockgroups[0].
+	
 }
 
 void Ext2::LOG(Logger::Severity sever, std::string msg, int line)
